@@ -9,14 +9,16 @@
     name: 'Item',
     // 属性接收只需要指定属性名
     props: ['comment', 'index', 'delComment'],
-   /* props: {
-      comment: Object,
-      index: Number,
-      delComment: Function
-    },*/
+    /* props: { // 和上面的是等价的
+       comment: Object,
+       index: Number,
+       delComment: Function
+     },*/
     methods: {
       deleteItem: function () {
-        this.delComment(this.index)
+        if (window.confirm(`确定删除${this.comment.name}的评论么？`)) {
+          this.delComment(this.index)
+        }
       }
     }
   }
