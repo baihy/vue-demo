@@ -28,6 +28,8 @@ module.exports = {
     // 配置首行缩进
     'indent': 0,
     // 代码中，忽略no-new检查
-    'no-new': 0
+    'no-new': 0,
+    'no-multi-spaces': 0,
+    'spaced-comment': 0
   }
 }

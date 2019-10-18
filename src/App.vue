@@ -5,7 +5,7 @@
     </div>
     <div>
       <item-add :addComment="addComment"/>
-      <item-list :comments="comments"/>
+      <item-list :comments="comments" v-bind:delComment="delComment"/>
     </div>
   </div>
 </template>
@@ -26,6 +26,11 @@
     methods: {
       addComment: function (comment) {
         this.comments.unshift(comment)
+      },
+      delComment: function (index) {
+        console.info(index)
+        console.info(this.comments.length)
+        this.comments.splice(index, 1)
       }
     },
     name: 'App',
