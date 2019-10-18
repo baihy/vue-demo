@@ -17,7 +17,7 @@
     computed: {
       isAll: {
         get: function () {
-          return this.completed == this.all
+          return this.completed === this.all
         },
         set: function (value) {
           this.selectAll(value)

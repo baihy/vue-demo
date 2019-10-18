@@ -18,7 +18,7 @@
     },
     methods: {
       addItem: function () {
-        if (this.title.trim() != '') {
+        if (this.title.trim() !== '') {
           let todo = {
             title: this.title,
             complete: false

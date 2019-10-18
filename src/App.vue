@@ -18,11 +18,7 @@
     components: {todoHeader, todoList, todoFooter},
     data () {
       return {
-        todos: [
-          {title: '吃饭', complete: false},
-          {title: '睡觉', complete: true},
-          {title: 'coding', complete: false}
-        ]
+        todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')
       }
     },
     computed: {
@@ -41,7 +37,17 @@
         this.todos = this.todos.filter(td => !td.complete)
       },
       selectAll: function (check) {
-        this.todos.forEach(td => td.complete = check)
+        this.todos.forEach(td => {
+          td.complete = check
+        })
+      }
+    },
+    watch: { // 深度监视
+      todos: {
+        deep: true,
+        handler: function (todosNewValue) { // 需要见todos数组的新值放入localStorage
+          window.localStorage.setItem('todos_key', JSON.stringify(todosNewValue))
+        }
       }
     }
   }
