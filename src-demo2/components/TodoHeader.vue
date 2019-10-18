@@ -3,6 +3,7 @@
     <input class="fooderClass" type="text" v-model="title" placeholder="请输入任务名称，并回车确认" @keyup.enter="addItem">
   </div>
 </template>
+
 <script>
   export default {
     name: 'Header',
@@ -11,6 +12,10 @@
         title: ''
       }
     },
+    props: {
+      todos: Array,
+      addTodo: Function
+    },
     methods: {
       addItem: function () {
         if (this.title.trim() !== '') {
@@ -18,8 +23,7 @@
             title: this.title,
             complete: false
           }
-          // 触发事件
-          this.$emit('addTodo', todo) // 后面的参数就是需要传递给自定义事件的处理方法
+          this.addTodo(todo)
           this.title = ''
         }
       }
