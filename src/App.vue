@@ -4,7 +4,7 @@
       <Header/>
     </div>
     <div>
-      <item-add :addComment="addComment"/>
+      <item-add :comments="comments"/>
       <item-list :comments="comments"/>
     </div>
   </div>
@@ -20,7 +20,7 @@
     data () {
       return {
         // 数据在那个组件上，那么更新数据的方法就在那个组件上
-        comments: []
+        comments: []  // 注意：尽量不要传递data中的值，因为了尽量去保证数据的封闭性
       }
     },
     methods: {

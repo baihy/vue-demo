@@ -16,7 +16,7 @@
   export default {
     name: 'ItemList',
     // 声明接收属性 这样属性就会称为组件对象的属性
-    props: ['comments'],
+    props: ['comments'],  // props属性可以是数组，可以是对象，用来接收父组件传过来的数据
     components: {Item}
   }
 </script>
