@@ -2,7 +2,7 @@
   <div>
     <form>
       用户名：<input type="text" name="username" v-model="username"><br/>
-      评论内容：<textarea cols="4" rows="5" v-model="content"></textarea><br/>
+      评论内容：<textarea cols="20" rows="5" v-model="content"></textarea><br/>
       <input type="button" value="提交" @click="add"><br/>
     </form>
   </div>

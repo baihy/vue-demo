@@ -4,7 +4,7 @@
       <Header/>
     </div>
     <div>
-      <item-add :comments="comments"/>
+      <item-add :addComment="addComment"/>
       <item-list :comments="comments"/>
     </div>
   </div>
