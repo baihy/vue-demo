@@ -1,6 +1,9 @@
 <template>
   <div>
-    <TodoItem/>
+    <table>
+      <todo-item v-for="(todo, index) in todos" v-bind:key="index" v-bind:todo="todo" :delTodo="delTodo"
+                 :index="index"/>
+    </table>
   </div>
 </template>
 
@@ -10,10 +13,17 @@
 
   export default {
     name: 'TodoList',
-    components: {TodoItem}
+    components: {TodoItem},
+    props: {
+      todos: Array,
+      delTodo: Function
+    }
   }
 </script>
 
 <style scoped>
-
+  table {
+    border: 1px azure solid;
+    width: 700px;
+  }
 </style>

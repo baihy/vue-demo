@@ -1,20 +1,49 @@
 <template>
   <div class="appClass">
-    <TodoHeader/>
-    <TodoList/>
-    <TodoFooter/>
+    <todo-header v-bind:todos="todos" v-bind:addTodo="addTodo"/>
+    <todo-list v-bind:todos="todos" :delTodo="delTodo"/>
+    <todo-footer :completed="completed" :all="todos.length" v-bind:delTodoSelected="delTodoSelected"
+                 :select-all="selectAll"/>
   </div>
 </template>
 
 <script>
 
-  import TodoHeader from './components/TodoHeader'
-  import TodoList from './components/TodoList'
-  import TodoFooter from './components/TodoFooter'
+  import todoHeader from './components/TodoHeader'
+  import todoList from './components/TodoList'
+  import todoFooter from './components/TodoFooter'
 
   export default {
     name: 'App',
-    components: {TodoHeader, TodoList, TodoFooter}
+    components: {todoHeader, todoList, todoFooter},
+    data () {
+      return {
+        todos: [
+          {title: '吃饭', complete: false},
+          {title: '睡觉', complete: true},
+          {title: 'coding', complete: false}
+        ]
+      }
+    },
+    computed: {
+      completed: function () {
+        return this.todos.filter((td) => td.complete).length
+      }
+    },
+    methods: {
+      addTodo: function (todo) {
+        this.todos.unshift(todo)
+      },
+      delTodo: function (index) {
+        this.todos.splice(index, 1)
+      },
+      delTodoSelected: function () {
+        this.todos = this.todos.filter(td => !td.complete)
+      },
+      selectAll: function (check) {
+        this.todos.forEach(td => td.complete = check)
+      }
+    }
   }
 </script>
 

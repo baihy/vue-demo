@@ -1,18 +1,37 @@
 <template>
   <div>
-    <input class="fooderClass" type="text" placeholder="请输入任务名称，并回车确认">
+    <input type="checkbox" v-model="isAll"><span>已完成{{completed}}/全部{{all}}</span>
+    <button @click="delSelected">清除已完成任务</button>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'Fooder'
+    name: 'Fooder',
+    props: {
+      completed: Number,
+      all: Number,
+      delTodoSelected: Function,
+      selectAll: Function
+    },
+    computed: {
+      isAll: {
+        get: function () {
+          return this.completed == this.all
+        },
+        set: function (value) {
+          this.selectAll(value)
+        }
+      }
+    },
+    methods: {
+      delSelected: function () {
+        this.delTodoSelected()
+      }
+    }
   }
 </script>
 
 <style scoped>
-  .fooderClass{
-    width: 400px;
-    height: 30px;
-  }
+
 </style>
