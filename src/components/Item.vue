@@ -8,12 +8,12 @@
   export default {
     name: 'Item',
     // 属性接收只需要指定属性名
-    //props: ['comment', 'index', 'delComment'],
-    props: {
+    props: ['comment', 'index', 'delComment'],
+   /* props: {
       comment: Object,
       index: Number,
       delComment: Function
-    },
+    },*/
     methods: {
       deleteItem: function () {
         this.delComment(this.index)
