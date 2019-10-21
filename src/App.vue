@@ -4,8 +4,11 @@
     <todo-header ref="headder"/> <!--需要给模版标签起一个名字-->
     <!--<todo-list v-bind:todos="todos" :delTodo="delTodo"/>-->
     <todo-list v-bind:todos="todos"/><!--delTodo方法，需要先传给TodoList,之后在传给TodoItem-->
-    <todo-footer :completed="completed" :all="todos.length" v-bind:delTodoSelected="delTodoSelected"
-                 :select-all="selectAll"/>
+    <!--<todo-footer :completed="completed" :all="todos.length" v-bind:delTodoSelected="delTodoSelected"
+                 :select-all="selectAll"/>-->
+    <todo-footer :completed="completed" :all="todos.length" v-bind:delTodoSelected="delTodoSelected">
+      <input slot="checkbookSlot" type="checkbox" v-model="isAll">
+    </todo-footer>
   </div>
 </template>
 
@@ -15,18 +18,28 @@
   import todoHeader from './components/TodoHeader'
   import todoList from './components/TodoList'
   import todoFooter from './components/TodoFooter'
+  import {addData, getData} from './js/LocalStorageUtils'
 
+  const TODOS_KEY = 'todos_key'
   export default {
     name: 'App',
     components: {todoHeader, todoList, todoFooter},
     data () {
       return {
-        todos: JSON.parse(window.localStorage.getItem('todos_key') || '[]')
+        todos: JSON.parse(getData(TODOS_KEY) || '[]')
       }
     },
     computed: {
       completed: function () {
         return this.todos.filter((td) => td.complete).length
+      },
+      isAll: {
+        get: function () {
+          return this.completed === this.todos.length
+        },
+        set: function (value) {
+          this.selectAll(value)
+        }
       }
     },
     methods: {
@@ -49,7 +62,7 @@
       todos: {
         deep: true,
         handler: function (todosNewValue) { // 需要见todos数组的新值放入localStorage
-          window.localStorage.setItem('todos_key', JSON.stringify(todosNewValue))
+          addData(TODOS_KEY, todosNewValue)
         }
       }
     },
