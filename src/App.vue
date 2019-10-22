@@ -18,7 +18,7 @@
     import todoHeader from './components/TodoHeader'
     import todoList from './components/TodoList'
     import todoFooter from './components/TodoFooter'
-    import LocalStorageUtils from './js/LocalStorageUtils'
+    import localStorageUtils from './js/LocalStorageUtils'
 
     const TODOS_KEY = 'todos_key'
     export default {
@@ -26,7 +26,7 @@
         components: {todoHeader, todoList, todoFooter},
         data () {
             return {
-                todos: JSON.parse(LocalStorageUtils.getData(TODOS_KEY) || '[]')
+                todos: JSON.parse(localStorageUtils.getData(TODOS_KEY) || '[]')
             }
         },
         computed: {
@@ -62,7 +62,7 @@
             todos: {
                 deep: true,
                 handler: function (todosNewValue) { // 需要见todos数组的新值放入localStorage
-                    LocalStorageUtils.saveData(TODOS_KEY, todosNewValue)
+                    localStorageUtils.saveData(TODOS_KEY, todosNewValue)
                 }
             }
         },
