@@ -1,7 +1,10 @@
 <template>
-  <h1>
-    Home
-  </h1>
+  <div>
+    <h1>Home</h1>
+    <router-link to="/Home/News">News</router-link>
+    <router-link to="Message">Message</router-link>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
@@ -11,5 +14,7 @@
 </script>
 
 <style scoped>
-
+  /* .abc {
+     color: red;
+   }*/
 </style>

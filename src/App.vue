@@ -14,8 +14,8 @@
     }
 </script>
 
-<style scoped>
-  .router-link-active {
+<style>
+  .abc {
     color: red;
   }
 </style>
