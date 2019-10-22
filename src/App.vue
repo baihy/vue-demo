@@ -1,37 +1,21 @@
 <template>
   <div>
-    <div v-if="!repoName">loding...</div>
-    <div v-else>最流程的框架是：{{repoName}}</div>
+    <h1>首页</h1>
+    <router-link to="/About">About</router-link>
+    <router-link to="/Home">Home</router-link>
+    <div>
+      <router-view></router-view>
+    </div>
   </div>
 </template>
-
 <script>
-    import axios from 'axios'
     export default {
-        name: 'App',
-        data: function () {
-            return {
-                repoName: ''
-            }
-        },
-        mounted: function () {
-            const url = 'https://api.github.com/search/repositories?q=vue&sort=stars'
-            /*this.$http.get(url).then(function (response) {
-                console.info(response)
-                this.repoName = response.data.items[0].name
-            }, function () {
-                console.info('请求失败！！！')
-            })*/
-            // 使用axios发送ajax请求
-            axios.get(url).then(response => {
-                this.repoName = response.data.items[0].name
-            }).catch(error => {
-                console.info(error)
-            })
-        }
+        name: 'App'
     }
 </script>
 
 <style scoped>
-
+  .router-link-active {
+    color: red;
+  }
 </style>
