@@ -1,6 +1,7 @@
 <template>
   <div>
     <span>
+      <!--slot卡槽的方式执行标签的传递-->
       <slot name="checkbookSlot"></slot>
       <!--<input type="checkbox" v-model="isAll">-->
     </span>
@@ -10,21 +11,21 @@
 </template>
 
 <script>
-  export default {
-    name: 'Fooder',
-    props: {
-      completed: Number,
-      all: Number,
-      delTodoSelected: Function,
-      selectAll: Function
-    },
+    export default {
+        name: 'Fooder',
+        props: {
+            completed: Number,
+            all: Number,
+            delTodoSelected: Function,
+            selectAll: Function
+        },
 
-    methods: {
-      delSelected: function () {
-        this.delTodoSelected()
-      }
+        methods: {
+            delSelected: function () {
+                this.delTodoSelected()
+            }
+        }
     }
-  }
 </script>
 
 <style scoped>
